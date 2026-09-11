@@ -157,6 +157,14 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-forest-mist font-sans text-slate-700 overflow-x-hidden antialiased">
@@ -441,6 +449,36 @@
                 <div class="reveal max-w-2xl mx-auto rounded-2xl overflow-hidden border-2 border-forest-gold/30 p-2 bg-forest-canopy/40 shadow-2xl">
                     <img src="asset/collage.jpg" alt="Anton & Steffi Pre-Wedding Collage" class="w-full h-auto rounded-xl object-cover shadow-lg">
                 </div>
+
+                <!-- Horizontal Scrollable Gallery (collage1, collage2, collage3) -->
+                <div class="reveal mt-8 relative max-w-2xl mx-auto">
+                    <!-- Left Arrow Button -->
+                    <button type="button" onclick="scrollGallery(-1)" aria-label="Previous photo" class="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-forest-deep/80 hover:bg-forest-gold hover:text-forest-deep text-forest-goldlight border border-forest-gold/40 flex items-center justify-center shadow-lg transition-all backdrop-blur-sm cursor-pointer">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+
+                    <!-- Scroll Container -->
+                    <div id="horizontal-gallery" class="flex gap-4 overflow-x-auto snap-x snap-mandatory py-2 px-1 scrollbar-none scroll-smooth">
+                        <div class="snap-center shrink-0 w-60 sm:w-64 aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                            <img src="asset/collage1.jpg" alt="Anton & Steffi Photo 1" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="snap-center shrink-0 w-60 sm:w-64 aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                            <img src="asset/collage2.jpg" alt="Anton & Steffi Photo 2" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="snap-center shrink-0 w-60 sm:w-64 aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                            <img src="asset/collage3.jpg" alt="Anton & Steffi Photo 3" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
+
+                    <!-- Right Arrow Button -->
+                    <button type="button" onclick="scrollGallery(1)" aria-label="Next photo" class="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-forest-deep/80 hover:bg-forest-gold hover:text-forest-deep text-forest-goldlight border border-forest-gold/40 flex items-center justify-center shadow-lg transition-all backdrop-blur-sm cursor-pointer">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+
+                    <p class="text-[10px] text-forest-sage/70 tracking-widest uppercase mt-4 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-arrows-left-right text-forest-goldlight"></i> Swipe or scroll to see more
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -642,6 +680,14 @@
             document.querySelectorAll('[data-ics-download]').forEach(btn => {
                 btn.addEventListener('click', () => downloadICS(btn.getAttribute('data-ics-download')));
             });
+        }
+
+        function scrollGallery(direction) {
+            const gallery = document.getElementById('horizontal-gallery');
+            if (!gallery) return;
+            const item = gallery.querySelector('.snap-center');
+            const scrollDistance = item ? item.offsetWidth + 16 : 260;
+            gallery.scrollBy({ left: direction * scrollDistance, behavior: 'smooth' });
         }
 
         // Web Audio Synthesizer
