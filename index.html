@@ -458,15 +458,24 @@
                     </button>
 
                     <!-- Scroll Container -->
-                    <div id="horizontal-gallery" class="flex gap-4 overflow-x-auto snap-x snap-mandatory py-2 px-1 scrollbar-none scroll-smooth">
-                        <div class="snap-center shrink-0 w-60 sm:w-64 aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                    <div id="horizontal-gallery" class="flex items-center gap-4 overflow-x-auto snap-x snap-mandatory py-2 px-1 scrollbar-none scroll-smooth">
+                        <div class="snap-center shrink-0 h-[340px] sm:h-[400px] aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
                             <img src="asset/collage1.jpg" alt="Anton & Steffi Photo 1" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
                         </div>
-                        <div class="snap-center shrink-0 w-60 sm:w-64 aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                        <div class="snap-center shrink-0 h-[340px] sm:h-[400px] aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
                             <img src="asset/collage2.jpg" alt="Anton & Steffi Photo 2" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
                         </div>
-                        <div class="snap-center shrink-0 w-60 sm:w-64 aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                        <div class="snap-center shrink-0 h-[340px] sm:h-[400px] aspect-[9/16] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
                             <img src="asset/collage3.jpg" alt="Anton & Steffi Photo 3" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="snap-center shrink-0 h-[340px] sm:h-[400px] aspect-square rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                            <img src="asset/collage4.jpg" alt="Anton & Steffi Photo 4" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="snap-center shrink-0 h-[340px] sm:h-[400px] aspect-[2/3] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                            <img src="asset/studio1.jpg" alt="Anton & Steffi Studio 1" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="snap-center shrink-0 h-[340px] sm:h-[400px] aspect-[2/3] rounded-2xl overflow-hidden border border-forest-gold/30 p-1.5 bg-forest-canopy/40 shadow-xl group">
+                            <img src="asset/studio2.jpg" alt="Anton & Steffi Studio 2" loading="lazy" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
                         </div>
                     </div>
 
@@ -685,8 +694,7 @@
         function scrollGallery(direction) {
             const gallery = document.getElementById('horizontal-gallery');
             if (!gallery) return;
-            const item = gallery.querySelector('.snap-center');
-            const scrollDistance = item ? item.offsetWidth + 16 : 260;
+            const scrollDistance = gallery.clientWidth * 0.75;
             gallery.scrollBy({ left: direction * scrollDistance, behavior: 'smooth' });
         }
 
